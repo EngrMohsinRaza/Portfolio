@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* =============================================================================
+ *  🎨 DESIGN TOKENS — restyle the whole site from here
+ * =============================================================================
+ *  ink  → deep navy backgrounds        gold → luxury champagne accent
+ *  mist → neutral text shades          fonts → Playfair Display + Inter
+ * ========================================================================== */
+
+@theme inline {
+  /* Backgrounds — deep ink navy */
+  --color-ink-950: #060a14;
+  --color-ink-900: #0b1120;
+  --color-ink-800: #101830;
+  --color-ink-700: #1a2440;
+  --color-ink-600: #263354;
+
+  /* Accent — champagne gold */
+  --color-gold-100: #f8f1dd;
+  --color-gold-200: #f3e7c9;
+  --color-gold-300: #ebd9a8;
+  --color-gold-400: #d9be85;
+  --color-gold-500: #c9a96a;
+  --color-gold-600: #b08f4f;
+  --color-gold-700: #8f7239;
+
+  /* Text — cool neutral greys */
+  --color-mist-100: #f2f4f8;
+  --color-mist-200: #dde2ec;
+  --color-mist-300: #c4ccdb;
+  --color-mist-400: #9aa3b8;
+  --color-mist-500: #6f7a92;
+
+  /* Fonts (wired to next/font in src/app/layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  /* Soft pulsing dot (hero availability badge) */
+  --animate-pulse-dot: pulse-dot 2.6s ease-in-out infinite;
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(201 169 106 / 0.45); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 7px rgb(201 169 106 / 0); }
+  }
+}
+
+/* ------------------------------- base ------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-mist-100);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* Keep anchored sections clear of the fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  ::selection {
+    background: var(--color-gold-500);
+    color: var(--color-ink-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-ink-950); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border-radius: 999px;
+    border: 2px solid var(--color-ink-950);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-600); }
+}
+
+/* ---------------------------- components --------------------------------- */
+@layer components {
+  /* Page container */
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem; /* 1152px */
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-x { padding-inline: 2rem; }
+  }
+
+  /* Vertical rhythm for full-width sections */
+  .section {
+    position: relative;
+    padding-block: 6rem;
+  }
+  @media (min-width: 768px) {
+    .section { padding-block: 8rem; }
+  }
+
+  /* Small-caps gold label ("01 · ABOUT") */
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-gold-500);
+  }
+
+  /* Frosted glass panel */
+  .glass {
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.03);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Gold gradient text for accent words */
+  .text-gold-gradient {
+    background: linear-gradient(100deg, #f3e7c9 0%, #d9be85 40%, #c9a96a 65%, #8f7239 110%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Thin gold divider that fades at both ends */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(201 169 106 / 0.4), transparent);
+  }
+
+  /* Keyboard-accessible "skip to content" link */
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    transform: translateY(-6rem);
+    border-radius: 999px;
+    background: var(--color-gold-500);
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink-950);
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  /* Subtle film-grain overlay (add the class to <body>) */
+  .noise::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
