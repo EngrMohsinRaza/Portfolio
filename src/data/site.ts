@@ -137,10 +137,21 @@ export const siteConfig = {
   /* ---------------------------------------------------------------- */
   contact: {
     email: "rmohsin16@gmail.com", //      ✅ your email
-    phone: "+966 56 070 5142", //         ✅ displayed number
+    phone: "+966 56 070 5142", //         ✅ your Saudi phone number (displayed)
     phoneHref: "tel:+966560705142", //    ✅ digits only, for the tel: link
-    whatsapp: "966560705142", //          ✅ digits only (country code + number) — set "" to hide the WhatsApp card
-    whatsappDisplay: "+966 56 070 5142", // ✅ how the WhatsApp card displays the number
+
+    /* 💬 WhatsApp NUMBER (separate from your phone now):
+     *    Your Pakistani number. `whatsapp` must be digits only in
+     *    international format (no 00, no +): 00923029668985 → 923029668985.
+     *    Set `whatsapp` to "" to hide the WhatsApp number card. */
+    whatsapp: "923029668985", //          ✅ Pakistani WhatsApp number (wa.me link)
+    whatsappDisplay: "+92 302 9668985", // ✅ how the number card displays it
+
+    /* 💬 WhatsApp USERNAME (new WhatsApp feature):
+     *    Shown as a separate card linking to wa.me/Engr_MohsinRaza.
+     *    Set to "" to hide the username card. */
+    whatsappUsername: "Engr_MohsinRaza", // ✅ your WhatsApp username
+
     address: "2nd Industrial City", // ✅ your address (matches your resume)
     addressLine2: "Dammam 34333, Eastern Province, Saudi Arabia", // ✅ line 2
     mapUrl: "https://maps.google.com/?q=2nd+Industrial+City,+Dammam,+Saudi+Arabia", // ✏️ link opened when the address card is clicked

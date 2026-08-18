@@ -43,7 +43,7 @@ export function Resume() {
           title={
             <>
               Experience,{" "}
-              <em className="text-gold-gradient font-display italic">On Paper</em>
+              <em className="text-gold-gradient not-italic">On Paper</em>
             </>
           }
           description={siteConfig.resumeSection.description}
@@ -51,16 +51,16 @@ export function Resume() {
 
         {/* Premium resume card */}
         <Reveal>
-          <div className="glass relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] p-8 md:p-12">
+          <div className="glass corners relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] p-8 md:p-12">
             {/* Gold keyline on top of the card */}
             <div aria-hidden="true" className="hairline absolute inset-x-10 top-0" />
 
-            <div className="grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
+            <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
               {/* Faux document preview */}
               <div className="relative mx-auto w-full max-w-[290px]">
                 <div
                   aria-hidden="true"
-                  className="absolute -inset-8 rounded-[2.5rem] bg-[radial-gradient(closest-side,rgba(201,169,106,0.16),transparent)] blur-2xl"
+                  className="absolute inset-x-0 -inset-y-8 rounded-[2.5rem] bg-[radial-gradient(closest-side,rgba(189,148,80,0.16),transparent)] blur-2xl"
                 />
                 <div className="group relative -rotate-3 rounded-2xl border border-white/10 bg-ink-900 p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)] transition-transform duration-500 hover:rotate-0">
                   {/* Document header */}
@@ -91,7 +91,7 @@ export function Resume() {
                   </div>
 
                   {/* PDF badge */}
-                  <span className="absolute bottom-4 right-4 rounded-md bg-gradient-to-b from-gold-400 to-gold-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-ink-950">
+                  <span className="absolute bottom-4 right-4 rounded-md bg-gradient-to-b from-gold-400 to-gold-600 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-ink-950">
                     PDF
                   </span>
                 </div>

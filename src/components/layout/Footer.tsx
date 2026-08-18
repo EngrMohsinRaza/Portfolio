@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/[0.06] bg-ink-900/40">
       <div className="container-x py-14">
-        <div className="grid items-center gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-3">
           {/* Brand */}
           <div className="text-center md:text-left">
             <a href="#home" className="inline-flex items-center gap-2.5" aria-label={`${siteConfig.name} — back to top`}>

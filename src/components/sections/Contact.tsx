@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, AtSign, Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Reveal } from "@/components/shared/Reveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -37,7 +37,7 @@ export function Contact() {
       external: false,
       icon: <Phone className="h-5 w-5" />,
     },
-    /* WhatsApp card — set contact.whatsapp to "" to hide it */
+    /* WhatsApp NUMBER card — set contact.whatsapp to "" to hide it */
     ...(contact.whatsapp
       ? [
           {
@@ -47,6 +47,20 @@ export function Contact() {
             href: `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.firstName}, I found your portfolio website.`)}`,
             external: true,
             icon: <BrandIcon name="whatsapp" className="h-5 w-5" />,
+          },
+        ]
+      : []),
+    /* WhatsApp USERNAME card (new WhatsApp feature) — set
+       contact.whatsappUsername to "" to hide it */
+    ...(contact.whatsappUsername
+      ? [
+          {
+            key: "whatsapp-username",
+            label: "WhatsApp Username",
+            value: `@${contact.whatsappUsername}`,
+            href: `https://wa.me/${contact.whatsappUsername}`,
+            external: true,
+            icon: <AtSign className="h-5 w-5" />,
           },
         ]
       : []),
@@ -72,17 +86,19 @@ export function Contact() {
           eyebrow="Contact"
           title={
             <>
-              Let&apos;s Work <em className="text-gold-gradient font-display italic">Together</em>
+              Let&apos;s Work <em className="text-gold-gradient not-italic">Together</em>
             </>
           }
           description={siteConfig.contactSection.description}
         />
 
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        {/* 🛠️ grid-cols-1 = explicit single column on mobile (prevents
+            content-forced width blowout); min-w-0 lets items shrink */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           {/* Contact methods */}
-          <div className="space-y-4">
+          <div className="min-w-0 space-y-4">
             {methods.map((method, i) => (
-              <Reveal key={method.key} delay={0.06 * i}>
+              <Reveal key={method.key} delay={0.06 * i} className="min-w-0">
                 <a
                   href={method.href}
                   {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -106,7 +122,7 @@ export function Contact() {
           </div>
 
           {/* Contact form (validation + optional real email sending) */}
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="min-w-0">
             <ContactForm />
           </Reveal>
         </div>

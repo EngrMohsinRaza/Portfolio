@@ -21,7 +21,7 @@ export function SocialLinks() {
           eyebrow="Connect"
           title={
             <>
-              Find Me <em className="text-gold-gradient font-display italic">Online</em>
+              Find Me <em className="text-gold-gradient not-italic">Online</em>
             </>
           }
           description={siteConfig.connectSection.description}

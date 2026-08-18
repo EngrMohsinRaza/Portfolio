@@ -42,7 +42,9 @@ export function SectionHeading({
       >
         <span aria-hidden="true" className="hairline w-10" />
         <span>
-          {index} · {eyebrow}
+          <span aria-hidden="true" className="text-gold-600/70">[</span>{" "}
+          {index} · {eyebrow}{" "}
+          <span aria-hidden="true" className="text-gold-600/70">]</span>
         </span>
         <span aria-hidden="true" className="hairline w-10" />
       </p>

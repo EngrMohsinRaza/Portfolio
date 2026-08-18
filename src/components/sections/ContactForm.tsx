@@ -105,7 +105,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="glass relative overflow-hidden rounded-[2rem] p-7 md:p-9">
+    <div className="glass corners relative overflow-hidden rounded-[2rem] p-7 md:p-9">
       <div aria-hidden="true" className="hairline absolute inset-x-10 top-0" />
 
       <AnimatePresence mode="wait">

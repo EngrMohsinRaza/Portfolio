@@ -82,14 +82,14 @@ export function Hero() {
           })}
         </motion.div>
 
-        {/* Name */}
+        {/* Name — responsive clamp keeps it inside the screen on small phones */}
         <motion.h1
           variants={item}
-          className="font-display text-5xl leading-[1.05] text-mist-100 sm:text-6xl md:text-7xl lg:text-8xl"
+          className="break-words font-display text-[clamp(2rem,9.5vw,2.9rem)] leading-[1.08] text-mist-100 sm:text-6xl md:text-7xl lg:text-8xl"
         >
           {siteConfig.firstName}
           <br />
-          <em className="text-gold-gradient font-display italic">{siteConfig.lastName}</em>
+          <em className="text-gold-gradient not-italic">{siteConfig.lastName}</em>
         </motion.h1>
 
         {/* Title / tagline */}
@@ -149,8 +149,8 @@ export function Hero() {
         >
           {siteConfig.stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 text-center first:border-l-0 sm:border-l sm:border-white/[0.06]">
-              <dd className="text-gold-gradient font-display text-3xl md:text-4xl">{stat.value}</dd>
-              <dt className="text-[11px] uppercase tracking-[0.18em] text-mist-500">{stat.label}</dt>
+              <dd className="text-gold-gradient font-mono text-3xl md:text-4xl">{stat.value}</dd>
+              <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-mist-500">{stat.label}</dt>
             </div>
           ))}
         </motion.dl>

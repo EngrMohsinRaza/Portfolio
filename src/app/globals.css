@@ -3,8 +3,9 @@
 /* =============================================================================
  *  🎨 DESIGN TOKENS — restyle the whole site from here
  * =============================================================================
- *  ink  → deep navy backgrounds        gold → luxury champagne accent
- *  mist → neutral text shades          fonts → Playfair Display + Inter
+ *  ink  → deep navy backgrounds        brass → engineering gold accent
+ *  mist → neutral text shades          fonts → Space Grotesk (headings),
+ *  Inter (body) & JetBrains Mono (data/labels)
  * ========================================================================== */
 
 @theme inline {
@@ -15,14 +16,14 @@
   --color-ink-700: #1a2440;
   --color-ink-600: #263354;
 
-  /* Accent — champagne gold */
-  --color-gold-100: #f8f1dd;
-  --color-gold-200: #f3e7c9;
-  --color-gold-300: #ebd9a8;
-  --color-gold-400: #d9be85;
-  --color-gold-500: #c9a96a;
-  --color-gold-600: #b08f4f;
-  --color-gold-700: #8f7239;
+  /* Accent — brass / engineering gold */
+  --color-gold-100: #f7f0dc;
+  --color-gold-200: #f1e6c2;
+  --color-gold-300: #e9d5a0;
+  --color-gold-400: #d3ab6b;
+  --color-gold-500: #bd9450;
+  --color-gold-600: #a37c3d;
+  --color-gold-700: #856430;
 
   /* Text — cool neutral greys */
   --color-mist-100: #f2f4f8;
@@ -33,13 +34,14 @@
 
   /* Fonts (wired to next/font in src/app/layout.tsx) */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Soft pulsing dot (hero availability badge) */
   --animate-pulse-dot: pulse-dot 2.6s ease-in-out infinite;
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(201 169 106 / 0.45); }
-    50% { opacity: 0.55; box-shadow: 0 0 0 7px rgb(201 169 106 / 0); }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(189 148 80 / 0.45); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 7px rgb(189 148 80 / 0); }
   }
 }
 
@@ -53,20 +55,43 @@
       scroll-behavior: auto;
     }
   }
+
+  /* 🛠️ MOBILE FIX: hard-stop any horizontal overflow at the page level
+   *    (clip is stronger than hidden — it prevents the "wide content"
+   *    zoom-out behaviour on phones entirely) */
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
   body {
     background-color: var(--color-ink-950);
     color: var(--color-mist-100);
-    font-family: var(--font-sans);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
+
+  /* Subtle blueprint grid over the whole page (engineering theme) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgb(189 148 80 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(189 148 80 / 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
   /* Keep anchored sections clear of the fixed navbar */
   section[id] {
     scroll-margin-top: 5rem;
   }
   ::selection {
-    background: var(--color-gold-500);
-    color: var(--color-ink-950);
+    background: #bd9450;
+    color: #060a14;
   }
   :focus-visible {
     outline: 2px solid var(--color-gold-400);
@@ -74,13 +99,13 @@
     border-radius: 4px;
   }
   ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--color-ink-950); }
+  ::-webkit-scrollbar-track { background: #060a14; }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-ink-600);
+    background: #263354;
     border-radius: 999px;
-    border: 2px solid var(--color-ink-950);
+    border: 2px solid #060a14;
   }
-  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-600); }
+  ::-webkit-scrollbar-thumb:hover { background: #a37c3d; }
 }
 
 /* ---------------------------- components --------------------------------- */
@@ -105,13 +130,14 @@
     .section { padding-block: 8rem; }
   }
 
-  /* Small-caps gold label ("01 · ABOUT") */
+  /* Small-caps technical label ("[ 01 · ABOUT ]") */
   .eyebrow {
+    font-family: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--color-gold-500);
+    color: #bd9450;
   }
 
   /* Frosted glass panel */
@@ -122,18 +148,43 @@
     -webkit-backdrop-filter: blur(14px);
   }
 
-  /* Gold gradient text for accent words */
+  /* Brass gradient text for accent words */
   .text-gold-gradient {
-    background: linear-gradient(100deg, #f3e7c9 0%, #d9be85 40%, #c9a96a 65%, #8f7239 110%);
+    background: linear-gradient(100deg, #f1e6c2 0%, #d3ab6b 40%, #bd9450 65%, #856430 110%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Thin gold divider that fades at both ends */
+  /* Thin brass divider that fades at both ends */
   .hairline {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgb(201 169 106 / 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgb(189 148 80 / 0.4), transparent);
+  }
+
+  /* Engineering-drawing corner brackets (add to premium cards) */
+  .corners::before,
+  .corners::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border: 0 solid rgb(189 148 80 / 0.45);
+  }
+  .corners::before {
+    top: 10px;
+    left: 10px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+  }
+  .corners::after {
+    bottom: 10px;
+    right: 10px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    border-bottom-right-radius: 5px;
   }
 
   /* Keyboard-accessible "skip to content" link */
@@ -144,11 +195,11 @@
     z-index: 100;
     transform: translateY(-6rem);
     border-radius: 999px;
-    background: var(--color-gold-500);
+    background: #bd9450;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-ink-950);
+    color: #060a14;
     transition: transform 0.2s ease;
   }
   .skip-link:focus {

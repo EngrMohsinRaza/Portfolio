@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { MotionProvider } from "@/components/shared/MotionProvider";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
 /* ---------------------------------------------------------------------------
  * Self-hosted fonts (downloaded at build time — no external requests at runtime)
- * Playfair Display → elegant serif headings · Inter → clean body text
+ * Space Grotesk → technical headings · Inter → clean body text ·
+ * JetBrains Mono → data, labels, numbers (the "engineer" accent)
  * ------------------------------------------------------------------------- */
 const inter = Inter({
   subsets: ["latin"],
@@ -14,12 +15,18 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-space-grotesk",
   display: "swap",
   weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+  weight: ["500", "600", "700"],
 });
 
 /* ---------------------------------------------------------------------------
@@ -76,7 +83,7 @@ const personSchema = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} noise`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} noise`}>
         {/* Accessibility: keyboard users can jump straight to the content */}
         <a href="#main" className="skip-link">
           Skip to content

@@ -54,12 +54,12 @@ export function About() {
           title={
             <>
               Turning Processes Into{" "}
-              <em className="text-gold-gradient font-display italic">Performance</em>
+              <em className="text-gold-gradient not-italic">Performance</em>
             </>
           }
         />
 
-        <div className="grid gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
           {/* Left — narrative */}
           <div>
             <Reveal>
@@ -131,7 +131,7 @@ export function About() {
           </div>
 
           {/* Right — key strengths */}
-          <div className="grid content-start gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 content-start gap-4 sm:grid-cols-2">
             {siteConfig.about.strengths.map((strength, i) => {
               const Icon = ICONS[strength.icon] ?? Gem;
               return (
@@ -154,7 +154,7 @@ export function About() {
         </div>
 
         {/* Skills */}
-        <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-2 md:gap-16">
+        <div className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">
           {siteConfig.about.skills.map((group) => (
             <Reveal key={group.title}>
               <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-mist-300">
@@ -165,7 +165,7 @@ export function About() {
                   <li key={skill.name}>
                     <div className="flex items-baseline justify-between text-sm">
                       <span className="font-medium text-mist-200">{skill.name}</span>
-                      <span className="font-display text-gold-400">{skill.level}%</span>
+                      <span className="font-mono text-gold-400">{skill.level}%</span>
                     </div>
                     <div
                       role="progressbar"
