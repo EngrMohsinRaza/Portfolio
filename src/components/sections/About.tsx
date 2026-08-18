@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import {
+  Award,
   BarChart3,
   Briefcase,
   Clock,
@@ -10,6 +11,7 @@ import {
   Languages,
   Layers,
   MapPin,
+  ShieldCheck,
   Target,
   type LucideIcon,
 } from "lucide-react";
@@ -17,7 +19,8 @@ import { siteConfig } from "@/data/site";
 import { Reveal } from "@/components/shared/Reveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
-/* Icon lookup — keys come from src/data/site.ts (about.facts / about.strengths) */
+/* Icon lookup — keys come from src/data/site.ts
+   (about.facts / about.strengths / about.credentials) */
 const ICONS: Record<string, LucideIcon> = {
   "map-pin": MapPin,
   briefcase: Briefcase,
@@ -28,6 +31,8 @@ const ICONS: Record<string, LucideIcon> = {
   gem: Gem,
   clock: Clock,
   layers: Layers,
+  "shield-check": ShieldCheck,
+  award: Award,
 };
 
 /**
@@ -90,6 +95,38 @@ export function About() {
                   );
                 })}
               </dl>
+            </Reveal>
+
+            {/* 🏅 Credentials — premium gold badges (edit in src/data/site.ts → about.credentials) */}
+            <Reveal delay={0.18}>
+              <div className="mt-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-mist-500">
+                  Credentials
+                </p>
+                <ul className="mt-3.5 flex flex-wrap gap-3">
+                  {siteConfig.about.credentials.map((credential) => {
+                    const Icon = ICONS[credential.icon] ?? ShieldCheck;
+                    return (
+                      <li
+                        key={credential.label}
+                        className="glass inline-flex items-center gap-3 rounded-full py-2 pl-2.5 pr-4 transition-colors duration-200 hover:border-gold-500/40"
+                      >
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-gold-400 to-gold-600 text-ink-950">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span>
+                          <span className="block text-sm font-semibold text-gold-300">
+                            {credential.label}
+                          </span>
+                          <span className="block text-[11px] leading-tight text-mist-400">
+                            {credential.note}
+                          </span>
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </Reveal>
           </div>
 

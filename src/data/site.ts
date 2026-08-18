@@ -33,9 +33,9 @@ export const siteConfig = {
   /* ---------------------------------------------------------------- */
   /* 2. SEO / SITE URL                                                 */
   /* ---------------------------------------------------------------- */
-  /* 🔗 After deploying to Vercel, replace this with your real URL
-   *    (e.g. "https://mohsin-raza.vercel.app" or your own domain). */
-  siteUrl: "https://www.your-domain.com",
+  /* 🔗 Your live URL — powers SEO, the sitemap, canonical links and
+   *    social-sharing previews. Update if you add a custom domain later. */
+  siteUrl: "https://portfolio-swart-omega-81.vercel.app",
   description:
     "Portfolio of Muhammad Mohsin Raza — Senior Industrial Engineer & Data Analyst with 10+ years in operations, lean manufacturing and supply chain, building AI-assisted web apps and dashboards from Dammam, Saudi Arabia.", // ✏️ meta description shown in Google results
   keywords: [
@@ -185,6 +185,21 @@ export const siteConfig = {
       { icon: "briefcase", label: "Experience", value: "10+ Years" },
       { icon: "languages", label: "Languages", value: "English · Urdu" },
       { icon: "globe", label: "Availability", value: "Open to New Roles" },
+    ],
+    /* 🏅 Credentials — shown as premium gold badges under the facts.
+     *    Add, edit or remove entries freely (icon: "shield-check", "award",
+     *    "badge-check", "gem", "target"…). */
+    credentials: [
+      {
+        icon: "shield-check",
+        label: "SCE Registered",
+        note: "Saudi Council of Engineers",
+      },
+      {
+        icon: "award",
+        label: "Lean Six Sigma Green Belt",
+        note: "Certified",
+      },
     ],
     strengths: [
       { icon: "target", title: "Operational Excellence", text: "Lean thinking applied end-to-end — cut waste, lift throughput, sustain the gains." },
